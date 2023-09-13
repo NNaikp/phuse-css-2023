@@ -1,0 +1,40 @@
+/*-- scss:defaults --*/
+
+// fonts
+$font-family-sans-serif: "Montserrat", sans-serif !default;
+
+// colors
+$pharmared: #FF0043;
+$body-bg: #f0f1eb !default;
+$body-color: #000 !default;
+$link-color: #51483d !default;
+$selection-bg: #F54773 !default;
+$code-color: $pharmared;
+$code-block-border-left: $pharmared;
+$code-block-bg: true;
+
+
+// headings
+$presentation-heading-font: "Montserrat", sans-serif !default;
+$presentation-heading-color: $pharmared !default;
+$presentation-h1-font-size: 1.6em; 
+$presentation-title-slide-text-align: left;
+
+
+
+/*-- scss:rules --*/
+
+.reveal h2 {
+    margin-top: 40px;
+    margin-left: 12%;
+    font-size: 1.3em;
+}
+
+.reveal p {
+  font-size: 1.1em;
+}
+
+.reveal ul {
+  list-style-image: url(./figures/marker.svg)
+}
+
