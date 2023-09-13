@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_2" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 368.09 468.09">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #fff;
+        stroke: #00a99d;
+        stroke-miterlimit: 10;
+        stroke-width: 7px;
+      }
+    </style>
+  </defs>
+  <g id="Layer_1-2" data-name="Layer 1">
+    <image width="278" height="278" transform="translate(102 202.01) scale(.96)" xlink:href="../../OneDrive - Novo Nordisk/My Pictures/pharmaverse_badges/banner1.png"/>
+    <g>
+      <polygon class="cls-1" points="120 4.04 8.31 68.52 8.31 197.49 120 261.97 231.69 197.49 231.69 68.52 120 4.04"/>
+      <image width="2653" height="2289" transform="translate(0 30.01) scale(.09)" xlink:href="../../OneDrive - Novo Nordisk/My Pictures/pharmaverse_badges/phuse.png"/>
+    </g>
+  </g>
+</svg>
