@@ -1,5 +1,5 @@
 ---
-title: "Amazing pharmaverse presentation"
+title: "Recreating environments with pharmaverse"
 author: "Ari Siggaard Knoph"
 format: 
   revealjs:
@@ -9,48 +9,75 @@ format:
     theme: pharmaverse.scss
 ---
 
-## Agenda
+```{r}
+#| include: false
+library(glue)
+library(countdown)
 
--   Some beautiful code
--   Closer look at a function
--   Main points
+renv_img <- "https://raw.githubusercontent.com/rstudio/renv/main/man/figures/logo.svg"
+pkglite_img <- "https://raw.githubusercontent.com/Merck/pkglite/master/man/figures/logo.png"
 
-## Code
+```
 
-When you click the **Render** button a presentation will be generated that includes both content and the output of embedded code. You can embed code like this:
+## The Workshop
+
 
 ```{r}
-#| echo: true
-1 + 1
+countdown(minutes = 10, seconds = 00, 
+          top = 0, bottom = 0,
+          left = 0, right = 0,
+          margin = "12%",
+          font_size = "7em")
 ```
 
 
-## Closer look at code from function
-
-This code is coming from a function in a package:
-
-```{r filename="foo.R"}
-#| echo: true
-#| code-line-numbers: "|1-3|5" 
-
-foo <- \(x) {
-  print(x)
-}
-
-foo("Hello")
-```
+## The Parking Lot
 
 
-## Main points
+## Agenda
 
-> `admiral` is growing!
-  
-  
-  
-  
-::: {.callout-tip}
-Did you know that `admiral` has already been extended to several disease areas?
-:::
+>
+>> - Managing packages
+>>
+>> - Novo Nordisk Submission
+>>
+>> - `renv` `r glue("<img src={renv_img} height='50'/>")`
+>>
+>> - `pkglite` `r glue("<img src={pkglite_img} height='50'/>")`
+>>
+>> - Submission files
+>>
+>> - The ADRG
+
+
+
+## Assumptions about your user
+
+
+
+
+## Managing packages
+
+This is some body text
+
+---
+
+This is some other text
+
+
+## Novo Nordisk Submission
+
+
+## `renv` `r glue("<img src={renv_img} align='right' height='115'/>")`
+
+## `pkglite` `r glue("<img src={pkglite_img} align='right' height='115'/>")`
+
+
+## Submission files
+
+## The ADRG
+
+## THANK YOU!
 
 
 
