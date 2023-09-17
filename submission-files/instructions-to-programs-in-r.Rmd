@@ -1,0 +1,704 @@
+---
+title: "Instructions to programs in R"
+# author: 
+#   - Anders Bilgrau
+#   - Ari Siggaard Knoph
+#   - Steffen Falgreen Larsen
+header-includes:
+  \usepackage{fancyhdr}
+  \pagestyle{fancy}
+  \fancyhf{}
+  \addtolength{\headheight}{1.0cm}
+  \rhead{Novo Nordisk - \today} \lhead{BLA 761326 - Insulin icodec}
+  \rfoot{\thepage} 
+  \fancypagestyle{plain}{\pagestyle{fancy}}
+output: 
+  bookdown::pdf_document2:
+    toc: true
+    toc_depth: 2
+    highlight: tango
+  # html_document:
+  #   toc: true
+  #   toc_float: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, tidy = FALSE)
+
+```
+
+```{r, echo=FALSE}
+
+library(glue)
+
+# Set trial
+trial <- "4477"
+```
+
+## Submission files
+
+Novo Nordisk has used internally developed packages to conduct TFL and ADaM programming. 
+Novo Nordisk has used the R package `renv` to manage R environments for each deliverable.
+
+Novo Nordisk uses a package manager to serve both internal and external (CRAN) packages. 
+As this server is not available externally, we have bundled our internal packages using the R package `pkglite` which represents packages as clear text files to pass the submission gateway. These text files needs to be unbundled and reconstructed into source R packages (.tar.gz) and stored in a common folder.
+
+The `renv` package uses a so-called `renv.lock` file which specifies all needed packages and allows `renv` to "bootstrap" the R environment.
+
+The files that accompany the recreation of the environments are:
+
+- `buildrenviron.r`, which sets up a Novo Nordisk folder structure and unpacks `pkglite`-files and `renv.lock`-files.
+- ``r glue("pkglite-{trial}.txt")``, which contains R packages re-packaged to a `.txt` file.
+- ``r glue("renvlock-{trial}.txt")``, which contains an overview of all versions of packages used in this deliverable in `JSON` format as well as the R version.
+- `activate.txt` which is the activation file for the functionality within the R package `renv`.
+
+
+## Software needed
+
+|Software  |Download|Comment|
+|----------|--------|-------|
+|R version 4.0.5   |https://cran.r-project.org/bin/windows/base/old/4.0.5/|The trials were executed in R version 4.0.4 but the package `devtools` to rebuild the packages requires R version 4.0.5   |   
+|Rstudio 2021.9.1.372|https://docs.posit.co/previous-versions/rstudio/#2021091|A later version of Rstudio can also be used   |
+|Rtools 4.0|https://cran.r-project.org/bin/windows/Rtools/rtools40.html|If rebuilding packages on a Windows machine Rtools is needed   |   
+
+To verify the R version you can execute the following:
+
+```{r}
+R.version # This is the version this document was built under
+
+```
+
+
+
+## Recreation of the R environment
+
+Please note that the `buildrenviron.r` file shown is this document is an updated version of the `buildrenviron.r` file submitted under module 5.3.5.1 in the "Analysis Program" folder under each trial. The `buildrenviron.r` file has been updated to:
+
+1. circumvent hardcoded dependency in the package `renv` on MRAN (Microsoft R Application Network) which closed down June 2023
+1. switch to install from public binaries rather than compiling from source to avoid C compiler issues related to Windows
+1. upgrade/downgrade package versions in the `renv.lock` file to install from package binaries that fit the version of R used together with the Windows OS.
+
+The updated `buildrenviron.r` file must be copied from [here](#updated-buildrenviron.r) and replace the submitted files.
+
+----
+
+To set up the trial(s), the submission files mentioned above should be placed in a folder like so:
+
+![](./inst/figures/init-files.png)
+
+When unpacking multiple trials only 1 `activate.txt` and 1 `buildenviron.r` is needed.
+
+If the needed software is installed and files copied, then open up `buildrenviron.R` in Rstudio.
+The first section of `buildrenviron.R` sets up all paths needed to unwrap and install code.
+
+```{r, eval=FALSE}
+# Define necessary paths
+
+# Define path for pkg lite files
+pkglite_path <- "to-be-shared"   # UPDATE TO YOUR PATH
+
+# Define path to the unwrapped source code
+pkglite_source <- "pkglite_source" 
+
+# Define path to the build tar.gz files that will be used when evaluating code
+pkglite_cellar <- "pkglite_cellar"
+
+# Define path to root renv folder structure
+renv_root <- "~/renv-root"
+
+# project_root
+project_root <- pkglite_path
+
+project <- "nn1436"
+
+# Paths to public package managers with compiled binaries available
+public_pkg_urls <- c("https://packagemanager.posit.co/cran/2021-06-09",
+                     "https://packagemanager.posit.co/cran/2021-09-29")
+```
+
+
+In the following examples we will set the `pkglite_path` to a folder on the desktop (`"C:/Users/aikp/Desktop/r-sub"`). The top of `buildrenviron.R` should now look like this:
+
+```{r, eval=FALSE}
+# Define necessary paths
+
+# Define path for pkg lite files
+pkglite_path <- "C:/Users/aikp/Desktop/r-sub"   # UPDATE TO YOUR PATH
+
+# Define path to the unwrapped source code
+pkglite_source <- "pkglite_source" 
+
+# Define path to the build tar.gz files that will be used when evaluating code
+pkglite_cellar <- "pkglite_cellar"
+
+# Define path to root renv folder structure
+renv_root <- "~/renv-root"
+
+# project_root
+project_root <- pkglite_path
+
+project <- "nn1436"
+
+# Paths to public package managers with compiled binaries available
+public_pkg_urls <- c("https://packagemanager.posit.co/cran/2021-06-09",
+                     "https://packagemanager.posit.co/cran/2021-09-29")
+```
+
+**No further modification of `buildrenviron.r` other than the path should be needed.**
+
+The second part of `buildrenviron.r` installs the required version of packages needed to unwrap and install source code:
+
+```{r, eval=FALSE}
+## *****************************************************************************
+## # install/load required packages                                         ----
+## *****************************************************************************
+
+# Install required libraries if they are not present 
+
+# Ensure installation of CRAN packages in the versions used in submission
+rspm_repo = public_pkg_urls[1]
+if (!requireNamespace("pkglite", quietly = TRUE)) 
+  install.packages("pkglite", repos = rspm_repo)
+if (!requireNamespace("devtools", quietly = TRUE)) 
+  install.packages("devtools", repos = rspm_repo)
+if (!requireNamespace("usethis", quietly = TRUE)) 
+  install.packages("usethis", repos = rspm_repo)
+if (!requireNamespace("jsonlite", quietly = TRUE)) 
+  install.packages("jsonlite", repos = rspm_repo)
+
+# Attach libraries
+library(pkglite)
+library(devtools)
+library(usethis)
+library(jsonlite)
+```
+
+The third part of the `buildrenviron.r` unpacks the R packages stored in the `pkglite-*.txt` files and builds them for installation later on.
+
+```{r, eval=FALSE}
+## *****************************************************************************
+## # Unpack pkglite files                                                   ----
+##
+## The pkglite representation of the internal packages used in the different
+## Parts of the submission are unpackaged and build as tar.gz files
+## *****************************************************************************
+
+pkglite_files <- list.files(pkglite_path, pattern = "^pkglite-.*\\.txt")
+for (pkglite_file in pkglite_files) {
+  
+  # Make sure a folder exist for the unpacked source files
+  cat("unpacking", pkglite_file, "\n")
+  pkglite_output <- file.path(pkglite_source, tools::file_path_sans_ext(pkglite_file))
+  dir.create(pkglite_output, showWarnings = FALSE, recursive = TRUE)
+  
+  # Unpack the pkglite representation
+  unpack(file.path(pkglite_path, pkglite_file),
+         output = pkglite_output,
+         quiet = TRUE
+  )
+  
+  # Get the names of the packages used
+  pkgs <- list.files(pkglite_output, full.names = TRUE)
+  names(pkgs) <- sapply(pkgs, basename)
+  
+  # Create R tar.gz files for installation
+  lapply(file.path(pkglite_cellar, basename(pkgs)), dir.create,  
+         showWarnings = FALSE, recursive = TRUE)
+  pkg_tar_list <-
+    mapply(devtools::build, pkgs,  
+           vignettes = FALSE, path = file.path(pkglite_cellar, basename(pkgs)))
+}
+```
+
+Upon executing the above you should see the following appear in the console showing that `R CMD build` is running:
+
+![](./inst/figures/pkglite-build.png)
+
+The fourth and last part of `buildrenviron.r` sets up paths for `renv`, disables the MRAN dependency, Attaches the `Rtools` installation to the R environment and proceeds to build the folder structure and place all project files in their respective folders.
+
+```{r, eval=FALSE}
+## *****************************************************************************
+## # Create folders capable of bootstrapping                                ----
+##
+## Each study in the submission is run within slightly different environments.
+## This part of the script creates folders capable of bootstrapping each study.
+## *****************************************************************************
+
+# Define the .Renviron file
+renviron_content <- c(
+  paste0("RENV_PATHS_ROOT='", normalizePath(renv_root),"'"),
+  paste0("RENV_PATHS_LOCAL='", normalizePath(pkglite_cellar),"'"),
+  paste0("RENV_CONFIG_MRAN_ENABLED = FALSE")
+)
+
+# Add Rtools 4.0 if on windows
+if (.Platform$OS.type == "windows") {
+  write('PATH="${RTOOLS40_HOME}\\usr\\bin;${PATH}"', file = "~/.Renviron", append = TRUE)
+  rtools <- 'PATH="${RTOOLS40_HOME}\\usr\\bin;${PATH}"'
+} else {
+  rtools <- ""
+}
+
+# Get the trial names
+trials_01 <- list.files(pkglite_path, pattern = "^pkglite-.*\\.txt")
+trials <- gsub(".txt$", "", gsub("^pkglite-", "", trials_01))
+
+for (trial in trials) {
+  
+  # Create folders
+  new_trial_folder <- file.path(project_root, project, trial, "custom/stats/program")
+  dir.create(file.path(new_trial_folder, "renv"), 
+             showWarnings = FALSE, recursive = TRUE)
+  dir.create(file.path(new_trial_folder, "statprog"), 
+             showWarnings = FALSE, recursive = TRUE)
+  writeLines("Place the .R scripts in here", 
+             file.path(new_trial_folder, "statprog/README"))
+  
+  # Create some convience folders and helper README files
+  dir.create(file.path(new_trial_folder,  "../data/sdtm"), 
+             showWarnings = FALSE, recursive = TRUE)
+  writeLines("Place your SDTM in this folder", 
+             file.path(new_trial_folder, "../data/sdtm/README"))
+  dir.create(file.path(new_trial_folder,  "../data/adam"), 
+             showWarnings = FALSE, recursive = TRUE)
+  writeLines("Place your ADAM in this folder", 
+             file.path(new_trial_folder, "../data/adam/README"))
+  dir.create(file.path(new_trial_folder,  "../data/metadata"), 
+             showWarnings = FALSE, recursive = TRUE)
+  writeLines("Place your metadata in this folder", 
+             file.path(new_trial_folder, "../data/metadata/README"))
+  dir.create(file.path(new_trial_folder,  "../output/output_datasets"), 
+             showWarnings = FALSE, recursive = TRUE)
+  writeLines("The outputs will appear here", 
+             file.path(new_trial_folder, "../output/README"))
+  
+  # Create needed files for renv
+  writeLines(renviron_content, file.path(new_trial_folder, ".Renviron"))
+  writeLines('source("renv/activate.R")', file.path(new_trial_folder, ".Rprofile"))
+  file.copy(file.path(pkglite_path, "activate.txt"), 
+            file.path(new_trial_folder, "renv", "activate.R"))
+  file.copy(file.path(pkglite_path, paste0("renvlock-", trial, ".txt")), 
+            file.path(new_trial_folder, "renv.lock"))
+  
+
+  # Create R project file
+  create_project(new_trial_folder, open = FALSE)
+  unlink(file.path(new_trial_folder, "R"))
+  
+  # Create lib calls to all R packages:
+  lock_contents <- readLines(file.path(new_trial_folder, "renv.lock"))
+  package_lines <- grep('"Package":', lock_contents, value = TRUE)
+  packages <- gsub('\",?', "", gsub('.*: *\"', "", package_lines))
+  
+  writeLines(paste0("library(", packages, ")"), 
+             file.path(new_trial_folder, "_dependecies.R"))
+  
+  # Update renv.lock to use compiled binaries from a public package manager
+  lock_json <- jsonlite::fromJSON(paste(lock_contents, collapse = "\n"))
+  lock_json$R$Repositories <- rbind(lock_json$R$Repositories,lock_json$R$Repositories)
+  lock_json$R$Repositories$URL <- public_pkg_urls
+  
+  # On windows some packages need an updated compiled binary
+  if (!is.null(lock_json$Packages$Rcpp$Version))
+    lock_json$Packages$Rcpp$Version <- "1.0.7"
+  if (!is.null(lock_json$Packages$sp$Version))
+    lock_json$Packages$sp$Version <- "1.4-5"
+  if (!is.null(lock_json$Packages$xfun$Version))
+    lock_json$Packages$xfun$Version <- "0.23"
+  if (!is.null(lock_json$Packages$rmarkdown$Version))
+    lock_json$Packages$rmarkdown$Version <- "2.8"
+  lock_return <- jsonlite::toJSON(lock_json, pretty = TRUE, auto_unbox = TRUE)
+  writeLines(lock_return, con = file.path(new_trial_folder, "renv.lock"))
+}
+
+```
+
+The following folder structure is being built:
+
+```bash
+.
+|-- nn1436
+|   |-- 4477
+|       |-- custom
+|           |-- stats
+|               |-- data
+|               |   |-- adam
+|               |   |   |-- adadj.xpt
+|               |   |   |-- adeg.xpt
+|               |   |-- sdtm
+|               |-- output
+|                   |-- my_table.txt
+|                   |-- my_table.xml
+|                   |-- output_datasets  
+|                   |   |-- new_ds.xlsx
+|                   |-- output_source
+|                       |-- my_table.rds
+|-- nn1436
+|   |-- 4478
+|       |-- custom
+|           |-- stats
+|               |-- data
+|               |   |-- adam
+|               |   |-- sdtm
+|               |-- output
+|                   |-- output_datasets  
+|                   |-- output_source
+```
+
+Upon executing the code above you should see the following in the console:
+
+![](./inst/figures/build-projects.png)
+
+The folder specified in the `pkglite_path` now looks like this:
+
+![](./inst/figures/folder-project-built.png)
+
+with the following subfolders - one for each trial:
+
+![](./inst/figures/view-built-trial-folders.png)
+
+Open the `program` folder e.g. `nn1436/4477/custom/stats/program` and check that the project files are there:
+
+![](./inst/figures/unpacked-prog-folder.png)
+
+To further verify the setup you can check that:
+
+1. The project `.Renviron` file contains something like:
+
+```{r, eval=FALSE}
+RENV_PATHS_ROOT='C:\Users\aikp\OneDrive - Novo Nordisk\renv-root'
+RENV_PATHS_LOCAL='C:\Users\aikp\OneDrive - Novo Nordisk\pkglite_cellar'
+RENV_CONFIG_MRAN_ENABLED = FALSE
+
+```
+
+2. the file `renv/activate.R` is present and The project `.Rprofile` file contains:
+
+```{r, eval=FALSE}
+source("renv/activate.R")
+```
+
+3. Verify `renv.lock` exists.
+
+To restore the environment first open the `program.Rproj` file. This should open up Rstudio. As `renv` is bootstrapping itself you might see this screen for ~10 seconds:
+
+![](./inst/figures/rstudio-open-renv.png)
+
+Followed by:
+
+![](./inst/figures/renv-start.png)
+
+To restore the environment run `renv::restore()` in the console. Upon executing the command you should see the following in the console:
+
+![](./inst/figures/renv-restore.png)
+
+Confirm with "y" and depending on whether you have any of the packages available you should see that R either start querying the package manager or using a cache. At the end of the command you should see something like this:
+
+![](./inst/figures/renv-end.png)
+
+To confirm that the environment is correctly set up execute `library(NNBiostat)` in the console.
+A correct environment will load the package and display:
+
+![](./inst/figures/lib-NNBiostat.png)
+
+
+
+
+### Updated `buildrenviron.r`
+
+Please note that the submitted `buildrenviron.r` files should be replaced with the latest version below.
+
+```{r, eval=FALSE}
+## *****************************************************************************
+## # Description: 
+##
+## Build study containers and setup renv in each study
+## Unpacks the internally developed in Novo Nordisk packages and prepares
+## for download of externally needed packages.
+##
+## Programmer: sffl+aikp+abiu
+## *****************************************************************************
+
+# Define necessary paths
+
+# Define path for pkg lite files
+pkglite_path <- "to-be-shared"   # UPDATE TO YOUR PATH
+
+# Define path to the unwrapped source code
+pkglite_source <- "pkglite_source" 
+
+# Define path to the build tar.gz files that will be used when evaluating code
+pkglite_cellar <- "pkglite_cellar"
+
+# Define path to root renv folder structure
+renv_root <- "~/renv-root"
+
+# project_root
+project_root <- pkglite_path
+
+project <- "nn1436"
+
+# Paths to public package managers with compiled binaries available
+public_pkg_urls <- c("https://packagemanager.posit.co/cran/2021-06-09",
+                     "https://packagemanager.posit.co/cran/2021-09-29")
+
+## *****************************************************************************
+## # install/load required packages                                         ----
+## *****************************************************************************
+
+# Install required libraries if they are not present 
+
+# Ensure installation of CRAN packages in the versions used in submission
+rspm_repo = public_pkg_urls[1]
+if (!requireNamespace("pkglite", quietly = TRUE)) 
+  install.packages("pkglite", repos = rspm_repo)
+if (!requireNamespace("devtools", quietly = TRUE)) 
+  install.packages("devtools", repos = rspm_repo)
+if (!requireNamespace("usethis", quietly = TRUE)) 
+  install.packages("usethis", repos = rspm_repo)
+if (!requireNamespace("jsonlite", quietly = TRUE)) 
+  install.packages("jsonlite", repos = rspm_repo)
+
+# Attach libraries
+library(pkglite)
+library(devtools)
+library(usethis)
+library(jsonlite)
+
+## *****************************************************************************
+## # Unpack pkglite files                                                   ----
+##
+## The pkglite representation of the internal packages used in the different
+## Parts of the submission are unpackaged and build as tar.gz files
+## *****************************************************************************
+
+pkglite_files <- list.files(pkglite_path, pattern = "^pkglite-.*\\.txt")
+for (pkglite_file in pkglite_files) {
+  
+  # Make sure a folder exist for the unpacked source files
+  cat("unpacking", pkglite_file, "\n")
+  pkglite_output <- file.path(pkglite_source, tools::file_path_sans_ext(pkglite_file))
+  dir.create(pkglite_output, showWarnings = FALSE, recursive = TRUE)
+  
+  # Unpack the pkglite representation
+  unpack(file.path(pkglite_path, pkglite_file),
+         output = pkglite_output,
+         quiet = TRUE
+  )
+  
+  # Get the names of the packages used
+  pkgs <- list.files(pkglite_output, full.names = TRUE)
+  names(pkgs) <- sapply(pkgs, basename)
+  
+  # Create R tar.gz files for installation
+  lapply(file.path(pkglite_cellar, basename(pkgs)), dir.create,  
+         showWarnings = FALSE, recursive = TRUE)
+  pkg_tar_list <-
+    mapply(devtools::build, pkgs, vignettes = FALSE,  
+           path = file.path(pkglite_cellar, basename(pkgs)))
+}
+
+## *****************************************************************************
+## # Create folders capable of bootstrapping                                ----
+##
+## Each study in the submission is run within slightly different environments.
+## This part of the script creates folders capable of bootstrapping each study.
+## *****************************************************************************
+
+# Define the .Renviron file
+renviron_content <- c(
+  paste0("RENV_PATHS_ROOT='", normalizePath(renv_root),"'"),
+  paste0("RENV_PATHS_LOCAL='", normalizePath(pkglite_cellar),"'"),
+  paste0("RENV_CONFIG_MRAN_ENABLED = FALSE")
+)
+
+# Add Rtools 4.0 if on windows
+if (.Platform$OS.type == "windows") {
+  write('PATH="${RTOOLS40_HOME}\\usr\\bin;${PATH}"', file = "~/.Renviron", append = TRUE)
+  rtools <- 'PATH="${RTOOLS40_HOME}\\usr\\bin;${PATH}"'
+} else {
+  rtools <- ""
+}
+
+# Get the trial names
+trials_01 <- list.files(pkglite_path, pattern = "^pkglite-.*\\.txt")
+trials <- gsub(".txt$", "", gsub("^pkglite-", "", trials_01))
+
+for (trial in trials) {
+  
+  # Create folders
+  new_trial_folder <- file.path(project_root, project, trial, "custom/stats/program")
+  dir.create(file.path(new_trial_folder, "renv"),  
+             showWarnings = FALSE, recursive = TRUE)
+  dir.create(file.path(new_trial_folder, "statprog"),  
+             showWarnings = FALSE, recursive = TRUE)
+  writeLines("Place the .R scripts in here",  
+             file.path(new_trial_folder, "statprog/README"))
+  
+  # Create some convience folders and helper README files
+  dir.create(file.path(new_trial_folder,  "../data/sdtm"),  
+             showWarnings = FALSE, recursive = TRUE)
+  writeLines("Place your SDTM in this folder",  
+             file.path(new_trial_folder, "../data/sdtm/README"))
+  dir.create(file.path(new_trial_folder,  "../data/adam"),  
+             showWarnings = FALSE, recursive = TRUE)
+  writeLines("Place your ADAM in this folder",  
+             file.path(new_trial_folder, "../data/adam/README"))
+  dir.create(file.path(new_trial_folder,  "../data/metadata"), 
+             showWarnings = FALSE, recursive = TRUE)
+  writeLines("Place your metadata in this folder",  
+             file.path(new_trial_folder, "../data/metadata/README"))
+  dir.create(file.path(new_trial_folder,  "../output/output_datasets"),  
+             showWarnings = FALSE, recursive = TRUE)
+  writeLines("The outputs will appear here",  
+             file.path(new_trial_folder, "../output/README"))
+  
+  # Create needed files for renv
+  writeLines(renviron_content, file.path(new_trial_folder, ".Renviron"))
+  writeLines('source("renv/activate.R")', file.path(new_trial_folder, ".Rprofile"))
+  file.copy(file.path(pkglite_path, "activate.txt"), 
+            file.path(new_trial_folder, "renv", "activate.R"))
+  file.copy(file.path(pkglite_path, paste0("renvlock-", trial, ".txt")), 
+            file.path(new_trial_folder, "renv.lock"))
+  
+
+  # Create R project file
+  create_project(new_trial_folder, open = FALSE)
+  unlink(file.path(new_trial_folder, "R"))
+  
+  # Create lib calls to all R packages:
+  lock_contents <- readLines(file.path(new_trial_folder, "renv.lock"))
+  package_lines <- grep('"Package":', lock_contents, value = TRUE)
+  packages <- gsub('\",?', "", gsub('.*: *\"', "", package_lines))
+  
+  writeLines(paste0("library(", packages, ")"), 
+             file.path(new_trial_folder, "_dependecies.R"))
+  
+  # Update renv.lock to use compiled binaries from a public package manager
+  lock_json <- jsonlite::fromJSON(paste(lock_contents, collapse = "\n"))
+  lock_json$R$Repositories <- rbind(lock_json$R$Repositories,lock_json$R$Repositories)
+  lock_json$R$Repositories$URL <- public_pkg_urls
+  
+  # On windows some packages need an updated compiled binary
+  if (!is.null(lock_json$Packages$Rcpp$Version))
+    lock_json$Packages$Rcpp$Version <- "1.0.7"
+  if (!is.null(lock_json$Packages$sp$Version))
+    lock_json$Packages$sp$Version <- "1.4-5"
+  if (!is.null(lock_json$Packages$xfun$Version))
+    lock_json$Packages$xfun$Version <- "0.23"
+  if (!is.null(lock_json$Packages$rmarkdown$Version))
+    lock_json$Packages$rmarkdown$Version <- "2.8"
+  lock_return <- jsonlite::toJSON(lock_json, pretty = TRUE, auto_unbox = TRUE)
+  writeLines(lock_return, con = file.path(new_trial_folder, "renv.lock"))
+}
+
+
+
+
+```
+
+
+## Populating folders
+
+Once the environment is set up data can be copied to the `stats/data` folder e.g. ADaM data in `nn1436/4477/custom/stats/data/adam` like so:
+
+![](./inst/figures/data.png)
+
+R programs for tables, listings and figures should be copied to the `stats/program/statprog` folder e.g. `nn1436/4477/custom/stats/program/statprog`. Note that if the programs copied into the instance have the `.txt` extension then this should be changed back to `.r/.R` in order for Rstudio to process it as a script.
+
+![](./inst/figures/rename-to-r.png)
+
+If ADaM programs in R is needed they can be placed in a new folder `stats/program/adamprog`.
+
+
+## Program modification
+
+To modify a program to work locally e.g. `taesum.R` shown above, open up the program from the "Files" pane while in the active project. Upon opening the program you will see the following:
+
+![](./inst/figures/taesum-open.png)
+
+In the code you will see the use of the `NNaccess` package which uses the `nnaccess()` function to provide data access in the Novo Nordisk Clinical Data Repository.
+
+To make this function work in the local environment the `nnaccess()` call should be modified as follows for e.g. `4477`:
+
+```{r, eval=FALSE}
+library(NNBiostat)
+
+(db <- nnaccess(trial = "4477",
+                project = "nn1436",
+                instance = "custom",
+                root = "C:/Users/aikp/Desktop/r-sub",
+                use_cache = FALSE,
+                libref = libRef(root = getwd())))
+
+
+```
+
+Such that program now looks like this:
+
+![](./inst/figures/taesum-nnaccess-upd.png)
+
+Upon running the code you will see the following in the console:
+
+![](./inst/figures/nnaccess-call.png)
+
+The `NNaccess::nnaccess()` function sets up a consistent input/output object within a trial with agnostic file readers/writers, meaning that the following:
+
+```{r, eval=FALSE}
+adsl <- db$adam("adsl")
+```
+
+will always return the ADSL dataset regardless of the format (`rds`, `sas7bdat`, `xpt`, `csv`, `xlsx`) it is stored in within `stats/data/adam`.
+
+## Program execution
+
+Once the `nnaccess()` function has been modified almost all code in the program will run.
+
+Running the `aesum()` function within `taesum.R` and executing the first output you should see the following in the console:
+
+![](./inst/figures/taesum-exec.png)
+
+The warning message appears as there is no access to Novo Nordisk output metadata and should be ignored.
+
+In the `stats/output` folder the following should now have appeared:
+
+![](./inst/figures/taesum-output.png)
+
+The `taesumontsas.txt` contains the table produced by the `taesum.R` program:
+
+![](./inst/figures/taesum-table.png)
+
+Due to the missing access to Novo Nordisk output metadata the table appears without Title and footnotes. Only the technical footnote can be seen. The name of the program that created the output is shown here:
+
+![](./inst/figures/prog-name-output.png)
+
+All outputs have their underlying data saved to the `stats/output/output_datasets` and `stats/output/output_source` folders in `.xlsx` and `.rds` format.
+
+
+Applying the same `nnaccess()` update to the `stats/program/statprog/faesum.R` script:
+
+```{r, eval=FALSE}
+library(NNBiostat)
+
+(db <- nnaccess(trial = "4477",
+                project = "nn1436",
+                instance = "custom",
+                root = "C:/Users/aikp/Desktop/r-sub",
+                use_cache = FALSE,
+                libref = libRef(root = getwd())))
+
+
+```
+
+and executing it, you will see the following:
+
+![](./inst/figures/faesum-ex.png)
+
+In the `stats/output` folder a `.png` file will appear containing the plot:
+
+![](./inst/figures/faesum-output.png)
+
+
+
+
+
