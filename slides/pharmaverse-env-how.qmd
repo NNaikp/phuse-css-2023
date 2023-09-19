@@ -20,6 +20,15 @@ pkglite_img <- "https://raw.githubusercontent.com/Merck/pkglite/master/man/figur
 
 ```
 
+## Invent an animal
+
+```{r}
+countdown(minutes = 3, seconds = 00, 
+          top = 0, bottom = 0,
+          left = 0, right = 0,
+          margin = "12%",
+          font_size = "7em")
+``` 
 
 ## Three little pigs
 
@@ -72,7 +81,7 @@ pkglite_img <- "https://raw.githubusercontent.com/Merck/pkglite/master/man/figur
 ## *The Journey Map - R submission*
 
 
-```{r}
+```{r, dev = "png", dev.args=list(bg="transparent")}
 #Load ggplot2 package
 library(ggplot2)
 
@@ -83,23 +92,22 @@ data <- data.frame(x = c(1,2,3,4),
                    y = c(0.5, 0.5, 0.5, 0.5))
 
 #Create plot with no tick marks on x-axis
-p_journey <- ggplot(data, aes(x=x, y=y, fill = "transparent")) +
+p_journey <- ggplot(data, aes(x = x, y = y, fill = "transparent")) +
   geom_line() +
-  scale_x_continuous(breaks=NULL) +
+  scale_x_continuous(breaks = NULL) +
 
 #Add reference line and annotations
-  geom_hline(yintercept = 0.5, linetype="solid", color = pharmared, size = 3) +
-  annotate("text", x=1.5, y=0.58, label="(A)", color = pharmared, size = 12, family = "Montserrat sans-serif Bold") +
-  annotate("text", x=2.5, y=0.58, label="(B)", color = pharmared, size = 12, family = "Montserrat sans-serif") +
-  annotate("text", x=2.5, y=0.42, label="Submission", color = pharmared, size = 10, family = "Montserrat") +
-  annotate("text", x=3.5, y=0.58, label="(C)", color = pharmared, size = 12, family = "Montserrat") +
+  geom_hline(yintercept = 0.5, linetype = "solid", color = pharmared, size = 3) +
+  annotate("text", x = 1.5, y = 0.58, label = "(A)", color = pharmared, size = 12, family = "Montserrat sans-serif Bold") +
+  annotate("text", x = 2.5, y = 0.58, label = "(B)", color = pharmared, size = 12, family = "Montserrat sans-serif") +
+  annotate("text", x = 2.5, y = 0.42, label = "Submission", color = pharmared, size = 10, family = "Montserrat") +
+  annotate("text", x = 3.5, y = 0.58, label = "(C)", color = pharmared, size = 12, family = "Montserrat") +
 
 #Customize y-axis
   scale_y_continuous(limits = c(0,1),
                      breaks = c(0,1),
-                     labels = c(":o)", ">:o("),
-                     expand=c(0,0)) +
-  theme_void() 
+                     expand = c(0,0)) +
+  theme_void()
 
 print(p_journey)
   
@@ -136,7 +144,7 @@ countdown(minutes = 15, seconds = 00,
 
 ## *The Journey Map - R submission*
 
-```{r}
+```{r, dev = "png", dev.args=list(bg="transparent")}
 print(p_journey)
 ```
 
@@ -419,6 +427,8 @@ pack(
   output = "/path/to/pkglite.txt"
 )
 
+"/path/to/pkglite.txt" %>%
+  unpack(output = "/path/to/output/")
 ```
 
 
