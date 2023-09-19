@@ -3,11 +3,12 @@ title: "Recreating environments with pharmaverse > Today"
 author: "Ari Siggaard Knoph"
 format: 
   revealjs:
-    chalkboard: true
+    # chalkboard: true
     code-link: true
     background-image: ./figures/pharmaverse-bkgr.png
     background-size: contain
     theme: pharmaverse.scss
+    footer: "[Source on github](https://github.com/NNaikp/phuse-css-2023)"
 ---
 
 ```{r}
