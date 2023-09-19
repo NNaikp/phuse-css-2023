@@ -314,6 +314,13 @@ data.frame(pkgs)[1,]
 
 ![Shared Baseline](./figures/shared-baseline.png){width="50%"}
 
+## Managing packages (GxP style)
+
+<center>
+<img src="https://raw.githubusercontent.com/pharmaR/riskmetric/master/man/figures/hex-riskmetric-aspconfig.png" height="250"/><img src="https://raw.githubusercontent.com/pharmaR/riskassessment/master/man/figures/hex-riskassessment-aspconfig.png" height="250"/><img src="https://raw.githubusercontent.com/phuse-org/valtools/main/man/figures/logo.png" height="250"/>
+</center>
+
+- Risk assessment and documentation tools
 
 ## `renv` `r glue("<img src={renv_img} align='right' height='115'/>")`
 
