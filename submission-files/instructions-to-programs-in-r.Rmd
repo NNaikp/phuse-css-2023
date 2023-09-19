@@ -9,7 +9,7 @@ header-includes:
   \pagestyle{fancy}
   \fancyhf{}
   \addtolength{\headheight}{1.0cm}
-  \rhead{Novo Nordisk - \today} \lhead{BLA 761326 - Insulin icodec}
+  \rhead{Novo Nordisk - \today} \lhead{PHUSE/CSS - pharmaverse Workshop}
   \rfoot{\thepage} 
   \fancypagestyle{plain}{\pagestyle{fancy}}
 output: 
@@ -32,7 +32,7 @@ knitr::opts_chunk$set(echo = TRUE, tidy = FALSE)
 library(glue)
 
 # Set trial
-trial <- "4477"
+trial <- "1234"
 ```
 
 ## Submission files
@@ -84,7 +84,7 @@ The updated `buildrenviron.r` file must be copied from [here](#updated-buildrenv
 
 To set up the trial(s), the submission files mentioned above should be placed in a folder like so:
 
-![](./inst/figures/init-files.png)
+![](~/github/phuse-css-2023/figures/init-files.png)
 
 When unpacking multiple trials only 1 `activate.txt` and 1 `buildenviron.r` is needed.
 
@@ -109,7 +109,7 @@ renv_root <- "~/renv-root"
 # project_root
 project_root <- pkglite_path
 
-project <- "nn1436"
+project <- "css123"
 
 # Paths to public package managers with compiled binaries available
 public_pkg_urls <- c("https://packagemanager.posit.co/cran/2021-06-09",
@@ -137,7 +137,7 @@ renv_root <- "~/renv-root"
 # project_root
 project_root <- pkglite_path
 
-project <- "nn1436"
+project <- "css123"
 
 # Paths to public package managers with compiled binaries available
 public_pkg_urls <- c("https://packagemanager.posit.co/cran/2021-06-09",
@@ -212,7 +212,7 @@ for (pkglite_file in pkglite_files) {
 
 Upon executing the above you should see the following appear in the console showing that `R CMD build` is running:
 
-![](./inst/figures/pkglite-build.png)
+![](~/github/phuse-css-2023/figures/pkglite-build.png)
 
 The fourth and last part of `buildrenviron.r` sets up paths for `renv`, disables the MRAN dependency, Attaches the `Rtools` installation to the R environment and proceeds to build the folder structure and place all project files in their respective folders.
 
@@ -317,8 +317,8 @@ The following folder structure is being built:
 
 ```bash
 .
-|-- nn1436
-|   |-- 4477
+|-- css123
+|   |-- 1234
 |       |-- custom
 |           |-- stats
 |               |-- data
@@ -333,8 +333,8 @@ The following folder structure is being built:
 |                   |   |-- new_ds.xlsx
 |                   |-- output_source
 |                       |-- my_table.rds
-|-- nn1436
-|   |-- 4478
+|-- css123
+|   |-- 5678
 |       |-- custom
 |           |-- stats
 |               |-- data
@@ -347,19 +347,19 @@ The following folder structure is being built:
 
 Upon executing the code above you should see the following in the console:
 
-![](./inst/figures/build-projects.png)
+![](~/github/phuse-css-2023/figures/build-projects.png)
 
 The folder specified in the `pkglite_path` now looks like this:
 
-![](./inst/figures/folder-project-built.png)
+![](~/github/phuse-css-2023/figures/folder-project-built.png)
 
 with the following subfolders - one for each trial:
 
-![](./inst/figures/view-built-trial-folders.png)
+![](~/github/phuse-css-2023/figures/view-built-trial-folders.png)
 
-Open the `program` folder e.g. `nn1436/4477/custom/stats/program` and check that the project files are there:
+Open the `program` folder e.g. `css123/1234/custom/stats/program` and check that the project files are there:
 
-![](./inst/figures/unpacked-prog-folder.png)
+![](~/github/phuse-css-2023/figures/unpacked-prog-folder.png)
 
 To further verify the setup you can check that:
 
@@ -380,26 +380,26 @@ source("renv/activate.R")
 
 3. Verify `renv.lock` exists.
 
-To restore the environment first open the `program.Rproj` file. This should open up Rstudio. As `renv` is bootstrapping itself you might see this screen for ~10 seconds:
+To restore the environment first open the `program.Rproj` file. This should open up Rstudio. As `renv` is bootstrapping itself you might see this screen (blank screen) for ~10 seconds:
 
-![](./inst/figures/rstudio-open-renv.png)
+![](~/github/phuse-css-2023/figures/rstudio-open-renv.png)
 
 Followed by:
 
-![](./inst/figures/renv-start.png)
+![](~/github/phuse-css-2023/figures/renv-start.png)
 
 To restore the environment run `renv::restore()` in the console. Upon executing the command you should see the following in the console:
 
-![](./inst/figures/renv-restore.png)
+![](~/github/phuse-css-2023/figures/renv-restore.png)
 
 Confirm with "y" and depending on whether you have any of the packages available you should see that R either start querying the package manager or using a cache. At the end of the command you should see something like this:
 
-![](./inst/figures/renv-end.png)
+![](~/github/phuse-css-2023/figures/renv-end.png)
 
 To confirm that the environment is correctly set up execute `library(NNBiostat)` in the console.
 A correct environment will load the package and display:
 
-![](./inst/figures/lib-NNBiostat.png)
+![](~/github/phuse-css-2023/figures/lib-NNBiostat.png)
 
 
 
@@ -436,7 +436,7 @@ renv_root <- "~/renv-root"
 # project_root
 project_root <- pkglite_path
 
-project <- "nn1436"
+project <- "css123"
 
 # Paths to public package managers with compiled binaries available
 public_pkg_urls <- c("https://packagemanager.posit.co/cran/2021-06-09",
@@ -600,13 +600,13 @@ for (trial in trials) {
 
 ## Populating folders
 
-Once the environment is set up data can be copied to the `stats/data` folder e.g. ADaM data in `nn1436/4477/custom/stats/data/adam` like so:
+Once the environment is set up data can be copied to the `stats/data` folder e.g. ADaM data in `css123/1234/custom/stats/data/adam` like so:
 
-![](./inst/figures/data.png)
+![](~/github/phuse-css-2023/figures/data.png)
 
-R programs for tables, listings and figures should be copied to the `stats/program/statprog` folder e.g. `nn1436/4477/custom/stats/program/statprog`. Note that if the programs copied into the instance have the `.txt` extension then this should be changed back to `.r/.R` in order for Rstudio to process it as a script.
+R programs for tables, listings and figures should be copied to the `stats/program/statprog` folder e.g. `css123/1234/custom/stats/program/statprog`. Note that if the programs copied into the instance have the `.txt` extension then this should be changed back to `.r/.R` in order for Rstudio to process it as a script.
 
-![](./inst/figures/rename-to-r.png)
+![](~/github/phuse-css-2023/figures/rename-to-r.png)
 
 If ADaM programs in R is needed they can be placed in a new folder `stats/program/adamprog`.
 
@@ -615,17 +615,17 @@ If ADaM programs in R is needed they can be placed in a new folder `stats/progra
 
 To modify a program to work locally e.g. `taesum.R` shown above, open up the program from the "Files" pane while in the active project. Upon opening the program you will see the following:
 
-![](./inst/figures/taesum-open.png)
+![](~/github/phuse-css-2023/figures/taesum-open.png)
 
 In the code you will see the use of the `NNaccess` package which uses the `nnaccess()` function to provide data access in the Novo Nordisk Clinical Data Repository.
 
-To make this function work in the local environment the `nnaccess()` call should be modified as follows for e.g. `4477`:
+To make this function work in the local environment the `nnaccess()` call should be modified as follows for e.g. `1234`:
 
 ```{r, eval=FALSE}
 library(NNBiostat)
 
-(db <- nnaccess(trial = "4477",
-                project = "nn1436",
+(db <- nnaccess(trial = "1234",
+                project = "css123",
                 instance = "custom",
                 root = "C:/Users/aikp/Desktop/r-sub",
                 use_cache = FALSE,
@@ -636,11 +636,11 @@ library(NNBiostat)
 
 Such that program now looks like this:
 
-![](./inst/figures/taesum-nnaccess-upd.png)
+![](~/github/phuse-css-2023/figures/taesum-NNaccess-update.png)
 
 Upon running the code you will see the following in the console:
 
-![](./inst/figures/nnaccess-call.png)
+![](~/github/phuse-css-2023/figures/nnaccess-call.png)
 
 The `NNaccess::nnaccess()` function sets up a consistent input/output object within a trial with agnostic file readers/writers, meaning that the following:
 
@@ -656,21 +656,18 @@ Once the `nnaccess()` function has been modified almost all code in the program 
 
 Running the `aesum()` function within `taesum.R` and executing the first output you should see the following in the console:
 
-![](./inst/figures/taesum-exec.png)
-
-The warning message appears as there is no access to Novo Nordisk output metadata and should be ignored.
+![](~/github/phuse-css-2023/figures/taesum-exec.png)
 
 In the `stats/output` folder the following should now have appeared:
 
-![](./inst/figures/taesum-output.png)
+![](~/github/phuse-css-2023/figures/taesum-output.png)
 
-The `taesumontsas.txt` contains the table produced by the `taesum.R` program:
+The `taesumontsas.txt` contains the table produced by the `taesum.R` program.
 
-![](./inst/figures/taesum-table.png)
 
 Due to the missing access to Novo Nordisk output metadata the table appears without Title and footnotes. Only the technical footnote can be seen. The name of the program that created the output is shown here:
 
-![](./inst/figures/prog-name-output.png)
+![](~/github/phuse-css-2023/figures/prog-name-output.png)
 
 All outputs have their underlying data saved to the `stats/output/output_datasets` and `stats/output/output_source` folders in `.xlsx` and `.rds` format.
 
@@ -680,8 +677,8 @@ Applying the same `nnaccess()` update to the `stats/program/statprog/faesum.R` s
 ```{r, eval=FALSE}
 library(NNBiostat)
 
-(db <- nnaccess(trial = "4477",
-                project = "nn1436",
+(db <- nnaccess(trial = "1234",
+                project = "css123",
                 instance = "custom",
                 root = "C:/Users/aikp/Desktop/r-sub",
                 use_cache = FALSE,
@@ -692,11 +689,11 @@ library(NNBiostat)
 
 and executing it, you will see the following:
 
-![](./inst/figures/faesum-ex.png)
+![](~/github/phuse-css-2023/figures/faesum-ex.png)
 
 In the `stats/output` folder a `.png` file will appear containing the plot:
 
-![](./inst/figures/faesum-output.png)
+![](~/github/phuse-css-2023/figures/faesum-output.png)
 
 
 

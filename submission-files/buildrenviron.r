@@ -25,7 +25,7 @@ renv_root <- "~/renv-root"
 # project_root
 project_root <- pkglite_path
 
-project <- "nn1436"
+project <- "css123"
 
 # Paths to public package managers with compiled binaries available
 public_pkg_urls <- c("https://packagemanager.posit.co/cran/2021-06-09",
