@@ -155,14 +155,12 @@ print(p_journey)
 - Discuss and add all complexities and assumptions on more post-its
 - Position on y-axis based on how delightful or awful it is to do
 
-## *The Journey Map - A to B*
-
 ```{r}
 countdown(minutes = 15, seconds = 00, 
-          top = 0, bottom = 0,
+          top = NULL, bottom = 0,
           left = 0, right = 0,
           margin = "12%",
-          font_size = "7em")
+          font_size = "3em")
 ```  
 
 
