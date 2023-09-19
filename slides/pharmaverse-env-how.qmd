@@ -1,8 +1,9 @@
 ---
-title: "Recreating environments with pharmaverse"
+title: "Recreating environments with pharmaverse > Today"
 author: "Ari Siggaard Knoph"
 format: 
   revealjs:
+    chalkboard: true
     code-link: true
     background-image: ./figures/pharmaverse-bkgr.png
     background-size: contain
@@ -19,68 +20,542 @@ pkglite_img <- "https://raw.githubusercontent.com/Merck/pkglite/master/man/figur
 
 ```
 
-## The Workshop
+
+## Three little pigs
+
+## Three little pigs {auto-animate="true"}
+
+ |Made of straw|
+ |-----|
+ |[R consortium pilot 1](https://github.com/RConsortium/submissions-pilot1-to-fda)|
+
+>> - 1 R package
+>> - 4 TFL programs
+>> - Some program guidance in the ADRG
+
+## Three little pigs {auto-animate="true"}
+
+ |Made of straw|Made of wood|
+ |-----|-----|
+ |[R consortium pilot 1](https://github.com/RConsortium/submissions-pilot1-to-fda)|[Novo Nordisk submission](https://www.youtube.com/watch?v=t33dS17QHuA)|
+
+>> - 17 R packages submitted
+>> - 100+ R TFL programs
+>> - 8 ADaM R programs
+
+>> - PMDA: `.rds` files submitted
+
+## Three little pigs {auto-animate="true"}
+
+ |Made of straw|Made of wood|Made of Stone|
+ |-----|-----|-----|
+  |[R consortium pilot 1](https://github.com/RConsortium/submissions-pilot1-to-fda)|[Novo Nordisk submission](https://www.youtube.com/watch?v=t33dS17QHuA)|[R consortium pilot 4](https://rconsortium.github.io/submissions-pilot4/)|
+
+>> - Container
+>> - WebAssembly
+
+
+## Three little pigs {auto-animate="true"}
+
+ |Made of straw|Made of wood|Made of Stone|Made of steel|
+ |-----|-----|-----|-----|
+ |[R consortium pilot 1](https://github.com/RConsortium/submissions-pilot1-to-fda)|[Novo Nordisk submission](https://www.youtube.com/watch?v=t33dS17QHuA)|[R consortium pilot 4](https://rconsortium.github.io/submissions-pilot4/)|???|
+
+## The Parking Lot
+
+- Park you question here!
+
+- Format: Q + name/email  
+
+- Follow-up in the end or after
+
+## *The Journey Map - R submission*
 
 
 ```{r}
-countdown(minutes = 10, seconds = 00, 
+#Load ggplot2 package
+library(ggplot2)
+
+pharmared <- "#FF0043"
+
+#Create a dataframe with a single variable
+data <- data.frame(x = c(1,2,3,4),
+                   y = c(0.5, 0.5, 0.5, 0.5))
+
+#Create plot with no tick marks on x-axis
+p_journey <- ggplot(data, aes(x=x, y=y, fill = "transparent")) +
+  geom_line() +
+  scale_x_continuous(breaks=NULL) +
+
+#Add reference line and annotations
+  geom_hline(yintercept = 0.5, linetype="solid", color = pharmared, size = 3) +
+  annotate("text", x=1.5, y=0.58, label="(A)", color = pharmared, size = 12, family = "Montserrat sans-serif Bold") +
+  annotate("text", x=2.5, y=0.58, label="(B)", color = pharmared, size = 12, family = "Montserrat sans-serif") +
+  annotate("text", x=2.5, y=0.42, label="Submission", color = pharmared, size = 10, family = "Montserrat") +
+  annotate("text", x=3.5, y=0.58, label="(C)", color = pharmared, size = 12, family = "Montserrat") +
+
+#Customize y-axis
+  scale_y_continuous(limits = c(0,1),
+                     breaks = c(0,1),
+                     labels = c(":o)", ">:o("),
+                     expand=c(0,0)) +
+  theme_void() 
+
+print(p_journey)
+  
+```
+
+
+::: {.notes}
+For the sake of this let's assume that this is the first time you are using R in a deliverable
+
+Pip: Journey Map  
+Pip: Voting afterwards?
+:::
+ 
+---
+
+
+## *The Journey Map - B to C*
+
+- Do sticky steps
+- Discuss and add all complexities and assumptions on more post-its
+- Position on y-axis based on how delightful or awful it is to do
+
+
+## *The Journey Map - B to C*
+
+
+```{r}
+countdown(minutes = 15, seconds = 00, 
           top = 0, bottom = 0,
           left = 0, right = 0,
           margin = "12%",
           font_size = "7em")
+``` 
+
+## *The Journey Map - R submission*
+
+```{r}
+print(p_journey)
 ```
 
+## *The Journey Map - A to B*
 
-## The Parking Lot
+- Do sticky steps
+- Discuss and add all complexities and assumptions on more post-its
+- Position on y-axis based on how delightful or awful it is to do
+
+## *The Journey Map - A to B*
+
+```{r}
+countdown(minutes = 15, seconds = 00, 
+          top = 0, bottom = 0,
+          left = 0, right = 0,
+          margin = "12%",
+          font_size = "7em")
+```  
 
 
-## Agenda
+## Dive Deeper
 
 >
 >> - Managing packages
->>
->> - Novo Nordisk Submission
 >>
 >> - `renv` `r glue("<img src={renv_img} height='50'/>")`
 >>
 >> - `pkglite` `r glue("<img src={pkglite_img} height='50'/>")`
 >>
->> - Submission files
+>> - Novo Nordisk Submission Files
 >>
 >> - The ADRG
 
 
 
-## Assumptions about your user
+## Managing packages
 
+> - We need to know a little bit more about [CRAN](https://cran.rstudio.com/)
 
+## What happens when you install packages? 
+
+```{r}
+#| eval: false
+#| echo: true
+
+install.packages("pharmaverse")
+```
+
+. . .
+
+```{r}
+#| eval: false
+#| echo: true
+
+available.packages()
+```
+
+. . .
+
+```{r}
+#| echo: true
+
+options("repos")
+```
+
+## What happens when you install packages? 
+
+```{r}
+#| eval: false
+#| echo: true
+
+install.packages("pharmaverse")
+```
+
+```{r}
+#| eval: false
+#| echo: true
+
+available.packages()
+```
+
+```{r}
+#| echo: true
+#| eval: false
+
+options("repos")
+```
+
+. . .
+
+```{r}
+#| echo: true
+
+pkgs <- available.packages()
+colnames(pkgs)
+```
+
+## What happens when you install packages? 
+
+```{r}
+#| eval: false
+#| echo: true
+
+install.packages("pharmaverse")
+```
+
+```{r}
+#| eval: false
+#| echo: true
+
+available.packages()
+```
+
+```{r}
+#| echo: true
+#| eval: false
+
+options("repos")
+```
+
+```{r}
+#| echo: true
+#| eval: false
+
+pkgs <- available.packages()
+colnames(pkgs)
+```
+
+. . .
+
+```{r}
+#| echo: true
+
+data.frame(pkgs)[1,]
+```
 
 
 ## Managing packages
 
-This is some body text
-
----
-
-This is some other text
+![](https://posit.co/wp-content/themes/Posit/public/markdown-blogs/challenges-in-package-management/version-example.jpg)
 
 
-## Novo Nordisk Submission
+## What happens when you install packages? 
+
+```{r}
+#| eval: false
+#| echo: true
+
+#* installing *binary* package 'pharmaverse'...
+```
+
+
+> - Compiled software
+>   - More complexity when re-creating environment!
+
+
+## Managing packages (GxP style)
+
+- Package management + Risk assessments
+
+> - Package manager + DIY documentation
+> - Subscription to validated repositories
+> - [Regulatory R repository](https://pharmar.github.io/regulatory-r-repo-wg/)
+
+## Managing packages (GxP style)
+
+![Shared Baseline](./figures/shared-baseline.png){width="50%"}
 
 
 ## `renv` `r glue("<img src={renv_img} align='right' height='115'/>")`
 
+Track the packages in your R environment
+
+- Great for collaboration
+
+- Caches packages across a team
+
+---
+
+Initialise `renv` in an R project and set up bootstrapping.
+
+
+```{r}    
+#| echo: true
+#| eval: false
+#| code-line-numbers: "1"
+
+renv::init()
+renv::snapshot()
+renv::restore()
+renv::status()
+```
+
+
+---
+
+Find packages and dependencies mentioned in `library()` calls.
+Save to `renv.lock` file.
+
+```{r}   
+#| echo: true
+#| eval: false
+#| code-line-numbers: "2"
+
+renv::init()
+renv::snapshot()
+renv::restore()
+renv::status()
+```
+
+
+---
+
+Restore to the environment saved in `renv.lock` file.
+
+```{r}    
+#| echo: true
+#| eval: false
+#| code-line-numbers: "3"
+
+renv::init()
+renv::snapshot()
+renv::restore()
+renv::status()
+```
+
+
+--- 
+
+Check for updates to the environment.  
+
+```{r}    
+#| echo: true
+#| eval: false
+#| code-line-numbers: "4"
+
+renv::init()
+renv::snapshot()
+renv::restore()
+renv::status()
+```
+
+If you have installed a package but not executed `renv::snapshot()` then `renv::status()` will notify you.
+
+---
+
+## Typical `renv` workflow - you
+
+> - An R project is started related to a specific folder and in specific R version
+> - `renv::init()` is executed
+> - First R scripts are created
+> - `renv::snapshot()` is executed and the packages used in R scripts are documented in `renv.lock`
+
+## Typical `renv` workflow - a team member
+
+> - A team member opens up the R project
+>   - `renv` will bootstrap and notify whether they are up-to-date or need to run `renv::restore()`
+>   - `renv::restore()` is executed
+>   - If team member uses new packages in R scripts `renv::snapshot()` is executed 
+
+
+## `renv` cellar
+
+> - Use if package source is unavailable
+> - Add `RENV_PATHS_CELLAR` to .Renviron
+
+
+## `pkglite` `r glue("<img src={pkglite_img} align='right' height='115'/>")` 
+
+Package package sources to text to pass through the submission gateway
+
+```{r}
+#| echo: true
+#| eval: false
+#| code-line-numbers: "1-5"
+
+pack(
+  "/path/to/pkg1/" %>% collate(file_default()),
+  "/path/to/pkg2/" %>% collate(file_default()),
+  output = "/path/to/pkglite.txt"
+)
+
+```
+
+
 ## `pkglite` `r glue("<img src={pkglite_img} align='right' height='115'/>")`
 
+Unpack package sources
 
-## Submission files
+```{r}
+#| echo: true
+#| eval: false
+#| code-line-numbers: "7-8"
+
+pack(
+  "/path/to/pkg1/" %>% collate(file_default()),
+  "/path/to/pkg2/" %>% collate(file_default()),
+  output = "/path/to/pkglite.txt"
+)
+
+"/path/to/pkglite.txt" %>%
+  unpack(output = "/path/to/output/")
+```
+
+
+
+## Novo Nordisk Submission files
+
+> - `pkglite-1234.txt`
+>    - All Novo Nordisk packages packaged to text
+> - `renvlock-1234.txt`
+>    - A trial's `renv.lock` file modified
+> - `activate.txt`
+>    - `renv` bootstrap script converted to text
+> - `buildrenviron.r`
+>    - Build everything
+
+
+## Building submission files
+
+Let's look at some code
+
+
+## Re-building submission files
+
+Let's look at some code
+
 
 ## The ADRG
 
-## THANK YOU!
+*"With great power comes great responsibility"*  
+
+> - *Paul Schuette - CSS 2023*  
+> - *Stan Lee* 
 
 
+## The ADRG
 
+- R submission pilot 1
+
+## The ADRG - Story Board
+
+Create a story board for a statistical reviewer to re-run your R program
+
+- 1 post-it per step
+
+
+```{r}
+countdown(minutes = 10, seconds = 00, 
+          top = NULL, bottom = 0,
+          left = 0, right = 0,
+          margin = "12%",
+          font_size = "2.5em")
+```
+
+
+## The ADRG - recipe
+
+Follow-up on your stories!
+
+## The ADRG
+
+- R submission pilot 3
+- Novo Nordisk submission
+
+## Optimising the "Journey"
+
+>> - Don't stop believing
+
+## Optimising the "Journey"
+
+What needs to be abstracted away in a submission?
+
+>> - Recreating environments  <img src="https://pharmaverse.github.io/envsetup/main/logo.png" align='right' height='115'/> 
+>> - Reading/Writing data
+>> - ???
+
+
+## How might we...?
+
+> - Back to your journeys
+> - Are there any complexities that can be grouped?
+> - Generate questions:
+>   - How might we create a common folder structure?
+
+
+```{r}
+countdown(minutes = 10, seconds = 00, 
+          top = NULL, bottom = 0,
+          left = 0, right = 0,
+          margin = "12%",
+          font_size = "2.5em")
+```
+
+
+## Crazy Eight
+
+- Idea generation
+- 8 post-its
+- 1 min per post-it
+
+```{r}
+countdown(minutes = 8, seconds = 00, 
+          top = NULL, bottom = 0,
+          left = 0, right = 0,
+          margin = "12%",
+          font_size = "3em")
+```
+
+
+## Break
+
+```{r}
+countdown(minutes = 8, seconds = 13, 
+          top = 0, bottom = 0,
+          left = 0, right = 0,
+          margin = "12%",
+          font_size = "7em")
+```
 
 
 

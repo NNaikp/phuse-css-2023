@@ -10,7 +10,7 @@
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.2.475">
 <meta name="author" content="Ari Siggaard Knoph">
-<title>Recreating environments with pharmaverse</title>
+<title>Recreating environments with pharmaverse &gt; Today</title>
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -28,11 +28,77 @@
       margin: 0 0.8em 0.2em -1.6em;
       vertical-align: middle;
     }
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      { color: #003b4f; background-color: #f1f3f5; }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span { color: #003b4f; } /* Normal */
+    code span.al { color: #ad0000; } /* Alert */
+    code span.an { color: #5e5e5e; } /* Annotation */
+    code span.at { color: #657422; } /* Attribute */
+    code span.bn { color: #ad0000; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #003b4f; } /* ControlFlow */
+    code span.ch { color: #20794d; } /* Char */
+    code span.cn { color: #8f5902; } /* Constant */
+    code span.co { color: #5e5e5e; } /* Comment */
+    code span.cv { color: #5e5e5e; font-style: italic; } /* CommentVar */
+    code span.do { color: #5e5e5e; font-style: italic; } /* Documentation */
+    code span.dt { color: #ad0000; } /* DataType */
+    code span.dv { color: #ad0000; } /* DecVal */
+    code span.er { color: #ad0000; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #ad0000; } /* Float */
+    code span.fu { color: #4758ab; } /* Function */
+    code span.im { color: #00769e; } /* Import */
+    code span.in { color: #5e5e5e; } /* Information */
+    code span.kw { color: #003b4f; } /* Keyword */
+    code span.op { color: #5e5e5e; } /* Operator */
+    code span.ot { color: #003b4f; } /* Other */
+    code span.pp { color: #ad0000; } /* Preprocessor */
+    code span.sc { color: #5e5e5e; } /* SpecialChar */
+    code span.ss { color: #20794d; } /* SpecialString */
+    code span.st { color: #20794d; } /* String */
+    code span.va { color: #111111; } /* Variable */
+    code span.vs { color: #20794d; } /* VerbatimString */
+    code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </style>
 <link rel="stylesheet" href="pharmaverse-env-how_files/libs/revealjs/dist/theme/quarto.css" id="theme">
 <link href="pharmaverse-env-how_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
 <link href="pharmaverse-env-how_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
 <link href="pharmaverse-env-how_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+<link href="pharmaverse-env-how_files/libs/revealjs/plugin/reveal-chalkboard/font-awesome/css/all.css" rel="stylesheet">
+<link href="pharmaverse-env-how_files/libs/revealjs/plugin/reveal-chalkboard/style.css" rel="stylesheet">
 <link href="pharmaverse-env-how_files/libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
 <style type="text/css">
 
@@ -325,7 +391,7 @@
   <div class="reveal">
     <div class="slides">
 
-<section id="title-slide" class="quarto-title-block center"><h1 class="title">Recreating environments with pharmaverse</h1>
+<section id="title-slide" class="quarto-title-block center"><h1 class="title">Recreating environments with pharmaverse &gt; Today</h1>
 
 <div class="quarto-title-authors">
 <div class="quarto-title-author">
@@ -335,10 +401,379 @@ Ari Siggaard Knoph
 </div>
 </div>
 
-</section><section id="the-workshop" class="slide level2"><h2>The Workshop</h2>
+</section><section id="three-little-pigs" class="slide level2"><h2>Three little pigs</h2>
+</section><section id="three-little-pigs-1" class="slide level2" data-auto-animate="true"><h2 data-id="quarto-animate-title">Three little pigs</h2>
+<table>
+<thead><tr class="header">
+<th>Made of straw</th>
+</tr></thead>
+<tbody><tr class="odd">
+<td><a href="https://github.com/RConsortium/submissions-pilot1-to-fda">R consortium pilot 1</a></td>
+</tr></tbody>
+</table>
+<blockquote>
+<ul>
+<li class="fragment">1 R package</li>
+<li class="fragment">4 TFL programs</li>
+<li class="fragment">Some program guidance in the ADRG</li>
+</ul>
+</blockquote>
+</section><section id="three-little-pigs-2" class="slide level2" data-auto-animate="true"><h2 data-id="quarto-animate-title">Three little pigs</h2>
+<table>
+<thead><tr class="header">
+<th>Made of straw</th>
+<th>Made of wood</th>
+</tr></thead>
+<tbody><tr class="odd">
+<td><a href="https://github.com/RConsortium/submissions-pilot1-to-fda">R consortium pilot 1</a></td>
+<td><a href="https://www.youtube.com/watch?v=t33dS17QHuA">Novo Nordisk submission</a></td>
+</tr></tbody>
+</table>
+<blockquote>
+<ul>
+<li class="fragment">17 R packages submitted</li>
+<li class="fragment">100+ R TFL programs</li>
+<li class="fragment">8 ADaM R programs</li>
+</ul>
+</blockquote>
+<blockquote>
+<ul>
+<li class="fragment">PMDA: <code>.rds</code> files submitted</li>
+</ul>
+</blockquote>
+</section><section id="three-little-pigs-3" class="slide level2" data-auto-animate="true"><h2 data-id="quarto-animate-title">Three little pigs</h2>
+<table>
+<thead><tr class="header">
+<th>Made of straw</th>
+<th>Made of wood</th>
+<th>Made of Stone</th>
+</tr></thead>
+<tbody><tr class="odd">
+<td><a href="https://github.com/RConsortium/submissions-pilot1-to-fda">R consortium pilot 1</a></td>
+<td><a href="https://www.youtube.com/watch?v=t33dS17QHuA">Novo Nordisk submission</a></td>
+<td><a href="https://rconsortium.github.io/submissions-pilot4/">R consortium pilot 4</a></td>
+</tr></tbody>
+</table>
+<blockquote>
+<ul>
+<li class="fragment">Container</li>
+<li class="fragment">WebAssembly</li>
+</ul>
+</blockquote>
+</section><section id="three-little-pigs-4" class="slide level2" data-auto-animate="true"><h2 data-id="quarto-animate-title">Three little pigs</h2>
+<table>
+<thead><tr class="header">
+<th>Made of straw</th>
+<th>Made of wood</th>
+<th>Made of Stone</th>
+<th>Made of steel</th>
+</tr></thead>
+<tbody><tr class="odd">
+<td><a href="https://github.com/RConsortium/submissions-pilot1-to-fda">R consortium pilot 1</a></td>
+<td><a href="https://www.youtube.com/watch?v=t33dS17QHuA">Novo Nordisk submission</a></td>
+<td><a href="https://rconsortium.github.io/submissions-pilot4/">R consortium pilot 4</a></td>
+<td>???</td>
+</tr></tbody>
+</table></section><section id="the-parking-lot" class="slide level2"><h2>The Parking Lot</h2>
+<ul>
+<li><p>Park you question here!</p></li>
+<li><p>Format: Q + name/email</p></li>
+<li><p>Follow-up in the end or after</p></li>
+</ul></section><section id="the-journey-map---r-submission" class="slide level2"><h2><em>The Journey Map - R submission</em></h2>
+
+<img data-src="pharmaverse-env-how_files/figure-revealjs/unnamed-chunk-2-1.png" width="960" class="r-stretch"><aside class="notes"><p>For the sake of this let’s assume that this is the first time you are using R in a deliverable</p>
+<p>Pip: Journey Map<br>
+Pip: Voting afterwards?</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside></section><section id="the-journey-map---b-to-c" class="slide level2"><h2><em>The Journey Map - B to C</em></h2>
+<ul>
+<li>Do sticky steps</li>
+<li>Discuss and add all complexities and assumptions on more post-its</li>
+<li>Position on y-axis based on how delightful or awful it is to do</li>
+</ul></section><section id="the-journey-map---b-to-c-1" class="slide level2"><h2><em>The Journey Map - B to C</em></h2>
 <div class="cell">
 <div class="cell-output-display">
-<div class="countdown" id="timer_bb5a5b5c" data-update-every="1" tabindex="0" style="top:0;right:0;bottom:0;left:0;margin:12%;font-size:7em;">
+<div class="countdown" id="timer_7462d396" data-update-every="1" tabindex="0" style="top:0;right:0;bottom:0;left:0;margin:12%;font-size:7em;">
+<div class="countdown-controls">
+<button class="countdown-bump-down">−</button><button class="countdown-bump-up">&amp;plus;</button>
+</div>
+<code class="countdown-time"><span class="countdown-digits minutes">15</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
+</div>
+</div>
+</div>
+</section><section id="the-journey-map---r-submission-1" class="slide level2"><h2><em>The Journey Map - R submission</em></h2>
+
+<img data-src="pharmaverse-env-how_files/figure-revealjs/unnamed-chunk-4-1.png" width="960" class="r-stretch"></section><section id="the-journey-map---a-to-b" class="slide level2"><h2><em>The Journey Map - A to B</em></h2>
+<ul>
+<li>Do sticky steps</li>
+<li>Discuss and add all complexities and assumptions on more post-its</li>
+<li>Position on y-axis based on how delightful or awful it is to do</li>
+</ul></section><section id="the-journey-map---a-to-b-1" class="slide level2"><h2><em>The Journey Map - A to B</em></h2>
+<div class="cell">
+<div class="cell-output-display">
+<div class="countdown" id="timer_cbf6fd13" data-update-every="1" tabindex="0" style="top:0;right:0;bottom:0;left:0;margin:12%;font-size:7em;">
+<div class="countdown-controls">
+<button class="countdown-bump-down">−</button><button class="countdown-bump-up">&amp;plus;</button>
+</div>
+<code class="countdown-time"><span class="countdown-digits minutes">15</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
+</div>
+</div>
+</div>
+</section><section id="dive-deeper" class="slide level2"><h2>Dive Deeper</h2>
+<blockquote>
+<ul>
+<li class="fragment"><p>Managing packages</p></li>
+<li class="fragment"><p><code>renv</code> <img src="https://raw.githubusercontent.com/rstudio/renv/main/man/figures/logo.svg" height="50"></p></li>
+<li class="fragment"><p><code>pkglite</code> <img src="https://raw.githubusercontent.com/Merck/pkglite/master/man/figures/logo.png" height="50"></p></li>
+<li class="fragment"><p>Novo Nordisk Submission Files</p></li>
+<li class="fragment"><p>The ADRG</p></li>
+</ul>
+</blockquote>
+</section><section id="managing-packages" class="slide level2"><h2>Managing packages</h2>
+<ul>
+<li class="fragment">We need to know a little bit more about <a href="https://cran.rstudio.com/">CRAN</a>
+</li>
+</ul></section><section id="what-happens-when-you-install-packages" class="slide level2"><h2>What happens when you install packages?</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">install.packages</span>(<span class="st">"pharmaverse"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="fragment">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="fu">available.packages</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<div class="fragment">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="fu">options</span>(<span class="st">"repos"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>$repos
+                                                                          CRAN 
+   "https://rspm.bifrost-prd.corp.aws.novonordisk.com/default-cran/2022-06-06" 
+                                                                       NN Prod 
+"https://rspm.bifrost-prd.corp.aws.novonordisk.com/prod-internal-4.2.0/latest" </code></pre>
+</div>
+</div>
+</div>
+</section><section id="what-happens-when-you-install-packages-1" class="slide level2"><h2>What happens when you install packages?</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="fu">install.packages</span>(<span class="st">"pharmaverse"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a><span class="fu">available.packages</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a><span class="fu">options</span>(<span class="st">"repos"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="fragment">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a>pkgs <span class="ot">&lt;-</span> <span class="fu">available.packages</span>()</span>
+<span id="cb8-2"><a href="#cb8-2"></a><span class="fu">colnames</span>(pkgs)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] "Package"               "Version"               "Priority"             
+ [4] "Depends"               "Imports"               "LinkingTo"            
+ [7] "Suggests"              "Enhances"              "License"              
+[10] "License_is_FOSS"       "License_restricts_use" "OS_type"              
+[13] "Archs"                 "MD5sum"                "NeedsCompilation"     
+[16] "File"                  "Repository"           </code></pre>
+</div>
+</div>
+</div>
+</section><section id="what-happens-when-you-install-packages-2" class="slide level2"><h2>What happens when you install packages?</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a><span class="fu">install.packages</span>(<span class="st">"pharmaverse"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a><span class="fu">available.packages</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a><span class="fu">options</span>(<span class="st">"repos"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a>pkgs <span class="ot">&lt;-</span> <span class="fu">available.packages</span>()</span>
+<span id="cb13-2"><a href="#cb13-2"></a><span class="fu">colnames</span>(pkgs)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="fragment">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a><span class="fu">data.frame</span>(pkgs)[<span class="dv">1</span>,]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   Package Version Priority                        Depends Imports LinkingTo
+A3      A3   1.0.0     &lt;NA&gt; R (&gt;= 2.15.0), xtable, pbapply    &lt;NA&gt;      &lt;NA&gt;
+              Suggests Enhances    License License_is_FOSS
+A3 randomForest, e1071     &lt;NA&gt; GPL (&gt;= 2)            &lt;NA&gt;
+   License_restricts_use OS_type Archs MD5sum NeedsCompilation File
+A3                  &lt;NA&gt;    &lt;NA&gt;  &lt;NA&gt;   &lt;NA&gt;               no &lt;NA&gt;
+                                                                              Repository
+A3 https://rspm.bifrost-prd.corp.aws.novonordisk.com/default-cran/2022-06-06/src/contrib</code></pre>
+</div>
+</div>
+</div>
+</section><section id="managing-packages-1" class="slide level2"><h2>Managing packages</h2>
+
+<img data-src="https://posit.co/wp-content/themes/Posit/public/markdown-blogs/challenges-in-package-management/version-example.jpg" class="r-stretch"></section><section id="what-happens-when-you-install-packages-3" class="slide level2"><h2>What happens when you install packages?</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a><span class="co">#* installing *binary* package 'pharmaverse'...</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ul>
+<li class="fragment">Compiled software
+<ul>
+<li class="fragment">More complexity when re-creating environment!</li>
+</ul>
+</li>
+</ul></section><section id="managing-packages-gxp-style" class="slide level2"><h2>Managing packages (GxP style)</h2>
+<ul>
+<li>Package management + Risk assessments</li>
+</ul>
+<ul>
+<li class="fragment">Package manager + DIY documentation</li>
+<li class="fragment">Subscription to validated repositories</li>
+<li class="fragment"><a href="https://pharmar.github.io/regulatory-r-repo-wg/">Regulatory R repository</a></li>
+</ul></section><section id="managing-packages-gxp-style-1" class="slide level2"><h2>Managing packages (GxP style)</h2>
+
+<img data-src="./figures/shared-baseline.png" style="width:50.0%" class="r-stretch quarto-figure-center"><p class="caption">Shared Baseline</p></section><section id="renv" class="slide level2"><h2>
+<code>renv</code> <img src="https://raw.githubusercontent.com/rstudio/renv/main/man/figures/logo.svg" align="right" height="115">
+</h2>
+<p>Track the packages in your R environment</p>
+<ul>
+<li><p>Great for collaboration</p></li>
+<li><p>Caches packages across a team</p></li>
+</ul></section><section class="slide level2"><p>Initialise <code>renv</code> in an R project and set up bootstrapping.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17" data-code-line-numbers="1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a>renv<span class="sc">::</span><span class="fu">init</span>()</span>
+<span id="cb17-2"><a href="#cb17-2"></a>renv<span class="sc">::</span><span class="fu">snapshot</span>()</span>
+<span id="cb17-3"><a href="#cb17-3"></a>renv<span class="sc">::</span><span class="fu">restore</span>()</span>
+<span id="cb17-4"><a href="#cb17-4"></a>renv<span class="sc">::</span><span class="fu">status</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section><section class="slide level2"><p>Find packages and dependencies mentioned in <code><a href="https://rdrr.io/r/base/library.html">library()</a></code> calls. Save to <code>renv.lock</code> file.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18" data-code-line-numbers="2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a>renv<span class="sc">::</span><span class="fu">init</span>()</span>
+<span id="cb18-2"><a href="#cb18-2"></a>renv<span class="sc">::</span><span class="fu">snapshot</span>()</span>
+<span id="cb18-3"><a href="#cb18-3"></a>renv<span class="sc">::</span><span class="fu">restore</span>()</span>
+<span id="cb18-4"><a href="#cb18-4"></a>renv<span class="sc">::</span><span class="fu">status</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section><section class="slide level2"><p>Restore to the environment saved in <code>renv.lock</code> file.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19" data-code-line-numbers="3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1"></a>renv<span class="sc">::</span><span class="fu">init</span>()</span>
+<span id="cb19-2"><a href="#cb19-2"></a>renv<span class="sc">::</span><span class="fu">snapshot</span>()</span>
+<span id="cb19-3"><a href="#cb19-3"></a>renv<span class="sc">::</span><span class="fu">restore</span>()</span>
+<span id="cb19-4"><a href="#cb19-4"></a>renv<span class="sc">::</span><span class="fu">status</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section><section class="slide level2"><p>Check for updates to the environment.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20" data-code-line-numbers="4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1"></a>renv<span class="sc">::</span><span class="fu">init</span>()</span>
+<span id="cb20-2"><a href="#cb20-2"></a>renv<span class="sc">::</span><span class="fu">snapshot</span>()</span>
+<span id="cb20-3"><a href="#cb20-3"></a>renv<span class="sc">::</span><span class="fu">restore</span>()</span>
+<span id="cb20-4"><a href="#cb20-4"></a>renv<span class="sc">::</span><span class="fu">status</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>If you have installed a package but not executed <code><a href="https://rstudio.github.io/renv/reference/snapshot.html">renv::snapshot()</a></code> then <code><a href="https://rstudio.github.io/renv/reference/status.html">renv::status()</a></code> will notify you.</p>
+</section><section id="typical-renv-workflow---you" class="slide level2"><h2>Typical <code>renv</code> workflow - you</h2>
+<ul>
+<li class="fragment">An R project is started related to a specific folder and in specific R version</li>
+<li class="fragment">
+<code><a href="https://rstudio.github.io/renv/reference/init.html">renv::init()</a></code> is executed</li>
+<li class="fragment">First R scripts are created</li>
+<li class="fragment">
+<code><a href="https://rstudio.github.io/renv/reference/snapshot.html">renv::snapshot()</a></code> is executed and the packages used in R scripts are documented in <code>renv.lock</code>
+</li>
+</ul></section><section id="typical-renv-workflow---a-team-member" class="slide level2"><h2>Typical <code>renv</code> workflow - a team member</h2>
+<ul>
+<li class="fragment">A team member opens up the R project
+<ul>
+<li class="fragment">
+<code>renv</code> will bootstrap and notify whether they are up-to-date or need to run <code><a href="https://rstudio.github.io/renv/reference/restore.html">renv::restore()</a></code>
+</li>
+<li class="fragment">
+<code><a href="https://rstudio.github.io/renv/reference/restore.html">renv::restore()</a></code> is executed</li>
+<li class="fragment">If team member uses new packages in R scripts <code><a href="https://rstudio.github.io/renv/reference/snapshot.html">renv::snapshot()</a></code> is executed</li>
+</ul>
+</li>
+</ul></section><section id="renv-cellar" class="slide level2"><h2>
+<code>renv</code> cellar</h2>
+<ul>
+<li class="fragment">Use if package source is unavailable</li>
+<li class="fragment">Add <code>RENV_PATHS_CELLAR</code> to .Renviron</li>
+</ul></section><section id="pkglite" class="slide level2"><h2>
+<code>pkglite</code> <img src="https://raw.githubusercontent.com/Merck/pkglite/master/man/figures/logo.png" align="right" height="115">
+</h2>
+<p>Package package sources to text to pass through the submission gateway</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21" data-code-line-numbers="1-5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1"></a><span class="fu">pack</span>(</span>
+<span id="cb21-2"><a href="#cb21-2"></a>  <span class="st">"/path/to/pkg1/"</span> <span class="sc">%&gt;%</span> <span class="fu">collate</span>(<span class="fu">file_default</span>()),</span>
+<span id="cb21-3"><a href="#cb21-3"></a>  <span class="st">"/path/to/pkg2/"</span> <span class="sc">%&gt;%</span> <span class="fu">collate</span>(<span class="fu">file_default</span>()),</span>
+<span id="cb21-4"><a href="#cb21-4"></a>  <span class="at">output =</span> <span class="st">"/path/to/pkglite.txt"</span></span>
+<span id="cb21-5"><a href="#cb21-5"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section><section id="pkglite-1" class="slide level2"><h2>
+<code>pkglite</code> <img src="https://raw.githubusercontent.com/Merck/pkglite/master/man/figures/logo.png" align="right" height="115">
+</h2>
+<p>Unpack package sources</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb22" data-code-line-numbers="7-8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1"></a><span class="fu">pack</span>(</span>
+<span id="cb22-2"><a href="#cb22-2"></a>  <span class="st">"/path/to/pkg1/"</span> <span class="sc">%&gt;%</span> <span class="fu">collate</span>(<span class="fu">file_default</span>()),</span>
+<span id="cb22-3"><a href="#cb22-3"></a>  <span class="st">"/path/to/pkg2/"</span> <span class="sc">%&gt;%</span> <span class="fu">collate</span>(<span class="fu">file_default</span>()),</span>
+<span id="cb22-4"><a href="#cb22-4"></a>  <span class="at">output =</span> <span class="st">"/path/to/pkglite.txt"</span></span>
+<span id="cb22-5"><a href="#cb22-5"></a>)</span>
+<span id="cb22-6"><a href="#cb22-6"></a></span>
+<span id="cb22-7"><a href="#cb22-7"></a><span class="st">"/path/to/pkglite.txt"</span> <span class="sc">%&gt;%</span></span>
+<span id="cb22-8"><a href="#cb22-8"></a>  <span class="fu">unpack</span>(<span class="at">output =</span> <span class="st">"/path/to/output/"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section><section id="novo-nordisk-submission-files" class="slide level2"><h2>Novo Nordisk Submission files</h2>
+<ul>
+<li class="fragment">
+<code>pkglite-1234.txt</code>
+<ul>
+<li class="fragment">All Novo Nordisk packages packaged to text</li>
+</ul>
+</li>
+<li class="fragment">
+<code>renvlock-1234.txt</code>
+<ul>
+<li class="fragment">A trial’s <code>renv.lock</code> file modified</li>
+</ul>
+</li>
+<li class="fragment">
+<code>activate.txt</code>
+<ul>
+<li class="fragment">
+<code>renv</code> bootstrap script converted to text</li>
+</ul>
+</li>
+<li class="fragment">
+<code>buildrenviron.r</code>
+<ul>
+<li class="fragment">Build everything</li>
+</ul>
+</li>
+</ul></section><section id="building-submission-files" class="slide level2"><h2>Building submission files</h2>
+<p>Let’s look at some code</p>
+</section><section id="re-building-submission-files" class="slide level2"><h2>Re-building submission files</h2>
+<p>Let’s look at some code</p>
+</section><section id="the-adrg" class="slide level2"><h2>The ADRG</h2>
+<p><em>“With great power comes great responsibility”</em></p>
+<ul>
+<li class="fragment">
+<em>Paul Schuette - CSS 2023</em><br>
+</li>
+<li class="fragment"><em>Stan Lee</em></li>
+</ul></section><section id="the-adrg-1" class="slide level2"><h2>The ADRG</h2>
+<ul>
+<li>R submission pilot 1</li>
+</ul></section><section id="the-adrg---story-board" class="slide level2"><h2>The ADRG - Story Board</h2>
+<p>Create a story board for a statistical reviewer to re-run your R program</p>
+<ul>
+<li>1 post-it per step</li>
+</ul>
+<div class="cell">
+<div class="cell-output-display">
+<div class="countdown" id="timer_cc36f876" data-update-every="1" tabindex="0" style="right:0;bottom:0;left:0;margin:12%;font-size:2.5em;">
 <div class="countdown-controls">
 <button class="countdown-bump-down">−</button><button class="countdown-bump-up">&amp;plus;</button>
 </div>
@@ -346,31 +781,75 @@ Ari Siggaard Knoph
 </div>
 </div>
 </div>
-</section><section id="agenda" class="slide level2"><h2>Agenda</h2>
+</section><section id="the-adrg---recipe" class="slide level2"><h2>The ADRG - recipe</h2>
+<p>Follow-up on your stories!</p>
+</section><section id="the-adrg-2" class="slide level2"><h2>The ADRG</h2>
+<ul>
+<li>R submission pilot 3</li>
+<li>Novo Nordisk submission</li>
+</ul></section><section id="optimising-the-journey" class="slide level2"><h2>Optimising the “Journey”</h2>
 <blockquote>
 <ul>
-<li class="fragment"><p>Managing packages</p></li>
-<li class="fragment"><p>Novo Nordisk Submission</p></li>
-<li class="fragment"><p><code>renv</code> <img src="https://raw.githubusercontent.com/rstudio/renv/main/man/figures/logo.svg" height="50"></p></li>
-<li class="fragment"><p><code>pkglite</code> <img src="https://raw.githubusercontent.com/Merck/pkglite/master/man/figures/logo.png" height="50"></p></li>
-<li class="fragment"><p>Submission files</p></li>
-<li class="fragment"><p>The ADRG</p></li>
+<li class="fragment">Don’t stop believing</li>
 </ul>
 </blockquote>
-</section><section id="assumptions-about-your-user" class="slide level2"><h2>Assumptions about your user</h2>
-</section><section id="managing-packages" class="slide level2"><h2>Managing packages</h2>
-<p>This is some body text</p>
-</section><section class="slide level2"><p>This is some other text</p>
-</section><section id="novo-nordisk-submission" class="slide level2"><h2>Novo Nordisk Submission</h2>
-</section><section id="renv" class="slide level2"><h2>
-<code>renv</code> <img src="https://raw.githubusercontent.com/rstudio/renv/main/man/figures/logo.svg" align="right" height="115">
-</h2>
-</section><section id="pkglite" class="slide level2"><h2>
-<code>pkglite</code> <img src="https://raw.githubusercontent.com/Merck/pkglite/master/man/figures/logo.png" align="right" height="115">
-</h2>
-</section><section id="submission-files" class="slide level2"><h2>Submission files</h2>
-</section><section id="the-adrg" class="slide level2"><h2>The ADRG</h2>
-</section><section id="thank-you" class="slide level2"><h2>THANK YOU!</h2>
+</section><section id="optimising-the-journey-1" class="slide level2"><h2>Optimising the “Journey”</h2>
+<p>What needs to be abstracted away in a submission?</p>
+<blockquote>
+<ul>
+<li class="fragment">Recreating environments <img src="https://pharmaverse.github.io/envsetup/main/logo.png" align="right" height="115">
+</li>
+<li class="fragment">Reading/Writing data</li>
+<li class="fragment">???</li>
+</ul>
+</blockquote>
+</section><section id="how-might-we" class="slide level2"><h2>How might we…?</h2>
+<ul>
+<li class="fragment">Back to your journeys</li>
+<li class="fragment">Are there any complexities that can be grouped?</li>
+<li class="fragment">Generate questions:
+<ul>
+<li class="fragment">How might we create a common folder structure?</li>
+</ul>
+</li>
+</ul>
+<div class="cell">
+<div class="cell-output-display">
+<div class="countdown" id="timer_2c52d619" data-update-every="1" tabindex="0" style="right:0;bottom:0;left:0;margin:12%;font-size:2.5em;">
+<div class="countdown-controls">
+<button class="countdown-bump-down">−</button><button class="countdown-bump-up">&amp;plus;</button>
+</div>
+<code class="countdown-time"><span class="countdown-digits minutes">10</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
+</div>
+</div>
+</div>
+</section><section id="crazy-eight" class="slide level2"><h2>Crazy Eight</h2>
+<ul>
+<li>Idea generation</li>
+<li>8 post-its</li>
+<li>1 min per post-it</li>
+</ul>
+<div class="cell">
+<div class="cell-output-display">
+<div class="countdown" id="timer_e44e8a78" data-update-every="1" tabindex="0" style="right:0;bottom:0;left:0;margin:12%;font-size:3em;">
+<div class="countdown-controls">
+<button class="countdown-bump-down">−</button><button class="countdown-bump-up">&amp;plus;</button>
+</div>
+<code class="countdown-time"><span class="countdown-digits minutes">08</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
+</div>
+</div>
+</div>
+</section><section id="break" class="slide level2"><h2>Break</h2>
+<div class="cell">
+<div class="cell-output-display">
+<div class="countdown" id="timer_7caef47e" data-update-every="1" tabindex="0" style="top:0;right:0;bottom:0;left:0;margin:12%;font-size:7em;">
+<div class="countdown-controls">
+<button class="countdown-bump-down">−</button><button class="countdown-bump-up">&amp;plus;</button>
+</div>
+<code class="countdown-time"><span class="countdown-digits minutes">08</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">13</span></code>
+</div>
+</div>
+</div>
 <div class="footer footer-default">
 
 </div>
@@ -378,7 +857,7 @@ Ari Siggaard Knoph
 </div>
   </div>
 
-  <script>window.backupDefine = window.define; window.define = undefined;</script><script src="pharmaverse-env-how_files/libs/revealjs/dist/reveal.js"></script><!-- reveal.js plugins --><script src="pharmaverse-env-how_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script><script src="pharmaverse-env-how_files/libs/revealjs/plugin/pdf-export/pdfexport.js"></script><script src="pharmaverse-env-how_files/libs/revealjs/plugin/reveal-menu/menu.js"></script><script src="pharmaverse-env-how_files/libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script><script src="pharmaverse-env-how_files/libs/revealjs/plugin/quarto-support/support.js"></script><script src="pharmaverse-env-how_files/libs/revealjs/plugin/notes/notes.js"></script><script src="pharmaverse-env-how_files/libs/revealjs/plugin/search/search.js"></script><script src="pharmaverse-env-how_files/libs/revealjs/plugin/zoom/zoom.js"></script><script src="pharmaverse-env-how_files/libs/revealjs/plugin/math/math.js"></script><script>window.define = window.backupDefine; window.backupDefine = undefined;</script><script>
+  <script>window.backupDefine = window.define; window.define = undefined;</script><script src="pharmaverse-env-how_files/libs/revealjs/dist/reveal.js"></script><!-- reveal.js plugins --><script src="pharmaverse-env-how_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script><script src="pharmaverse-env-how_files/libs/revealjs/plugin/pdf-export/pdfexport.js"></script><script src="pharmaverse-env-how_files/libs/revealjs/plugin/reveal-menu/menu.js"></script><script src="pharmaverse-env-how_files/libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script><script src="pharmaverse-env-how_files/libs/revealjs/plugin/reveal-chalkboard/plugin.js"></script><script src="pharmaverse-env-how_files/libs/revealjs/plugin/quarto-support/support.js"></script><script src="pharmaverse-env-how_files/libs/revealjs/plugin/notes/notes.js"></script><script src="pharmaverse-env-how_files/libs/revealjs/plugin/search/search.js"></script><script src="pharmaverse-env-how_files/libs/revealjs/plugin/zoom/zoom.js"></script><script src="pharmaverse-env-how_files/libs/revealjs/plugin/math/math.js"></script><script>window.define = window.backupDefine; window.backupDefine = undefined;</script><script>
 
       // Full list of configuration options available at:
       // https://revealjs.com/config/
@@ -390,7 +869,8 @@ Ari Siggaard Knoph
 'autoAnimateEasing': "ease",
 'autoAnimateDuration': 1,
 'autoAnimateUnmatched': true,
-'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
+'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleChalkboard(event)\"><kbd>b</kbd> Toggle Chalkboard</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleNotesCanvas(event)\"><kbd>c</kbd> Toggle Notes Canvas</a></li>\n<li class=\"slide-tool-item\" data-item=\"6\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.downloadDrawings(event)\"><kbd>d</kbd> Download Drawings</a></li>\n<li class=\"slide-tool-item\" data-item=\"7\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
+'chalkboard': {"buttons":true},
 'smaller': false,
  
         // Display controls in the bottom right corner
@@ -564,7 +1044,7 @@ Ari Siggaard Knoph
         },
 
         // reveal.js plugins
-        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, QuartoSupport,
+        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, RevealChalkboard, QuartoSupport,
 
           RevealMath,
           RevealNotes,
