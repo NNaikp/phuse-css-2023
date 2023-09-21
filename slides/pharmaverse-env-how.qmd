@@ -101,8 +101,10 @@ p_journey <- ggplot(data, aes(x = x, y = y, fill = "transparent")) +
   geom_hline(yintercept = 0.5, linetype = "solid", color = pharmared, size = 3) +
   annotate("text", x = 1.5, y = 0.58, label = "(A)", color = pharmared, size = 12, family = "Montserrat sans-serif Bold") +
   annotate("text", x = 2.5, y = 0.58, label = "(B)", color = pharmared, size = 12, family = "Montserrat sans-serif") +
-  annotate("text", x = 2.5, y = 0.42, label = "Submission", color = pharmared, size = 10, family = "Montserrat") +
   annotate("text", x = 3.5, y = 0.58, label = "(C)", color = pharmared, size = 12, family = "Montserrat") +
+  annotate("text", x = 1.5, y = 0.42, label = "Prepare", color = pharmared, size = 10, family = "Montserrat") +
+  annotate("text", x = 2.5, y = 0.42, label = "Submission", color = pharmared, size = 10, family = "Montserrat") +
+  annotate("text", x = 3.5, y = 0.38, label = "Review\n Completed", color = pharmared, size = 10, family = "Montserrat") +
 
 #Customize y-axis
   scale_y_continuous(limits = c(0,1),
@@ -473,12 +475,12 @@ pack(
 
 ## Building submission files
 
-Let's look at some code
+Let's look at [`build-cellar.R`](https://github.com/NNaikp/phuse-css-2023/blob/main/submission-utilities/build-cellar.R)
 
 
 ## Re-building submission files
 
-Let's look at some code
+Let's look at [`buildrenviron.r`](https://github.com/NNaikp/phuse-css-2023/blob/main/submission-files/buildrenviron.r)
 
 
 ## The ADRG
@@ -486,12 +488,14 @@ Let's look at some code
 *"With great power comes great responsibility"*  
 
 > - *Paul Schuette - CSS 2023*  
-> - *Stan Lee* 
+> - *Stan Lee*  
+  
+> - *"With `new` power comes `new` responsibility"*
 
 
 ## The ADRG
 
-- R submission pilot 1
+- [R submission pilot 1](https://github.com/RConsortium/submissions-pilot1-to-fda/blob/main/m5/datasets/rconsortiumpilot1/analysis/adam/datasets/adrg.pdf)
 
 ## The ADRG - Story Board
 
@@ -515,12 +519,9 @@ Follow-up on your stories!
 
 ## The ADRG
 
-- R submission pilot 3
-- Novo Nordisk submission
+- [R submission pilot 3](https://github.com/RConsortium/submissions-pilot3-adam/blob/main/vignettes/pdf/adrg.pdf)
+- [Novo Nordisk submission](https://github.com/NNaikp/phuse-css-2023/blob/main/submission-files/instructions-to-programs-in-r.pdf)
 
-## Optimising the "Journey"
-
->> - Don't stop believing
 
 ## Optimising the "Journey"
 
@@ -533,10 +534,10 @@ What needs to be abstracted away in a submission?
 
 ## How might we...?
 
-> - Back to your journeys
-> - Are there any complexities that can be grouped?
-> - Generate questions:
->   - How might we create a common folder structure?
+- Back to your journeys
+- Are there any complexities that can be grouped?
+- Generate questions:
+  - How might we create a common folder structure?
 
 
 ```{r}
